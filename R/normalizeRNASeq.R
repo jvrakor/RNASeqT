@@ -18,10 +18,9 @@
 normalizeRNASeq <- function(geneFPKMFile = NULL, outputFolder = './', name = NULL, groupString = NULL, useERCC = FALSE, erccFile = system.file("extdata/ERCC_Controls_Analysis.txt", package="RNASeqT")){
 	groupVector=unlist(strsplit(groupString,','))
 	erccTable = read.delim(erccFile)
-	
-	#formatting the genes.fpkm file
 
-	all_fpkm_exprs = read.table(geneFPKMFile,header=TRUE)
+	#formatting the genes.fpkm file
+	all_fpkm_exprs = read.table(geneFPKMFile,header=TRUE, fill = TRUE)
 
 	print(all_fpkm_exprs[1:5,])
 
