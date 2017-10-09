@@ -237,8 +237,11 @@ normalizeRNASeq <- function(geneFPKMFile = NULL, outputFolder = './', name = NUL
 
 
 			par(mar=c(5.1,4.1,8.1,2.1))
-
-			sampleRows = sample(expressedGeneRows,1000)#to keep scatter plots from bogging down
+			if(length(expressedGeneRows) > 1000){
+                sampleRows = sample(expressedGeneRows,1000) #to keep scatter plots from bogging down
+			}else{
+				sampleRows = expressedGeneRows
+			}
 			pairs(log2(expressionTable[sampleRows,groupColumns]),lower.panel=panel.awesome,upper.panel=panel.cor,cex.labels=0.8,xlim =c(log2(axisMin),log2(axisMax)),ylim = c(log2(axisMin),log2(axisMax)),pch=19,col=rgb(0.5,0.5,0.5,0.4),cex=1,main=figureTitle)
 		}
 	}
