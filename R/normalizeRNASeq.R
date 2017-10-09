@@ -221,6 +221,7 @@ normalizeRNASeq <- function(geneFPKMFile = NULL, outputFolder = './', name = NUL
 	pdf(file=filename_replicates,width =8,height =9)
 	for(group in groupVector){
 		groupColumns = grep(group,sampleNames)
+		print(groupColumns)
 		groupColumns = sort(groupColumns)
 		corVector = c()
 		if(length(groupColumns) > 1){
