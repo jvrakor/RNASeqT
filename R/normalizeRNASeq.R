@@ -20,7 +20,7 @@ normalizeRNASeq <- function(geneFPKMFile = NULL, outputFolder = './', name = NUL
 	erccTable = read.delim(erccFile)
 
 	#formatting the genes.fpkm file
-	all_fpkm_exprs = read.table(geneFPKMFile,header=TRUE, fill = TRUE)
+	all_fpkm_exprs = read.table(geneFPKMFile,header=TRUE, fill = TRUE, check.names = FALSE)
 
 	print(all_fpkm_exprs[1:5,])
 
