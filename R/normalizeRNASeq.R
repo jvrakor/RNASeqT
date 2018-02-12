@@ -220,6 +220,7 @@ normalizeRNASeq <- function(geneFPKMFile = NULL, outputFolder = './', name = NUL
 	filename_replicates = paste(outputFolder,name,'_replicate_correlations.pdf',sep='')
 	pdf(file=filename_replicates,width =8,height =9)
 	for(group in groupVector){
+		group <- sprintf("_%s$", group)
 		groupColumns = grep(group,sampleNames)
 		groupColumns = sort(groupColumns)
 		corVector = c()
@@ -256,6 +257,7 @@ normalizeRNASeq <- function(geneFPKMFile = NULL, outputFolder = './', name = NUL
 
 	for(i in 1:length(groupVector)){
 		group = groupVector[i]
+		group <- sprintf("_%s$", group)
 		groupColumns = grep(group,sampleNames)
 		if(length(groupColumns) == 1){
 			meanMatrixAll[,i] = expressionTable[,groupColumns]
@@ -276,6 +278,7 @@ normalizeRNASeq <- function(geneFPKMFile = NULL, outputFolder = './', name = NUL
 
 	for(i in 1:length(groupVector)){
 		group = groupVector[i]
+		group <- sprintf("_%s$", group)
 		groupColumns = grep(group,sampleNames)
 		if(length(groupColumns) == 1){
 			meanMatrix[,i] = expressionTable[expressedGeneRows,groupColumns]
@@ -313,12 +316,15 @@ normalizeRNASeq <- function(geneFPKMFile = NULL, outputFolder = './', name = NUL
 			group1 = groupVector[i]
 			group2 = groupVector[j]
 
+			group1_uni <- sprintf("_%s$", group1)
+			group2_uni <- sprintf("_%s$", group2)
+
 			print(paste("Running analysis on ",group1," vs ",group2))
 			print(paste("Running analysis on ",i," vs ",j))
 
 
-			group1Columns = grep(group1,sampleNames)
-			group2Columns = grep(group2,sampleNames)
+			group1Columns = grep(group1_uni,sampleNames)
+			group2Columns = grep(group2_uni,sampleNames)
 
 			#set up the report pdf
 			filename_pair = paste(outputFolder,name,'_',group1,'_vs_',group2,'.pdf',sep='')
